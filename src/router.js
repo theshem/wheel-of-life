@@ -3,6 +3,7 @@ import Router from 'vue-router';
 
 import Home from './views/Home.vue';
 import Assessment from './views/Assessment.vue';
+import Result from './views/Result.vue';
 
 Vue.use(Router);
 
@@ -19,6 +20,11 @@ export default new Router({
       path: '/assessment',
       name: 'assessment',
       component: Assessment,
+    },
+    {
+      path: '/result',
+      name: 'result',
+      component: Result,
     },
     {
       path: '*',

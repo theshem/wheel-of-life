@@ -5,7 +5,18 @@
       <!--/ <router-link to="/result">Result</router-link>-->
     </nav>
 
-    <router-view :wheel-data="wheelData" class="content" />
+    <main>
+      <transition
+        name="slide-fade"
+        mode="out-in">
+        <router-view
+          class="content"
+          :wheel-data="wheelData"
+          :steps="steps"
+          :chart-data="chartData"
+        />
+      </transition>
+    </main>
 
     <footer>
       Released under MIT license.
@@ -16,7 +27,11 @@
 </template>
 
 <script>
-import { event } from '@/utils';
+import {
+  pascalCase,
+  color,
+  event,
+} from '@/utils';
 
 export default {
   name: 'App',
@@ -34,6 +49,36 @@ export default {
         friends: 0,
       },
     };
+  },
+
+  computed: {
+    steps() {
+      return [
+        'health',
+        'career',
+        'love',
+        'spirituality',
+        'family',
+        'money',
+        'fun',
+        'friends',
+      ];
+    },
+
+    chartData() {
+      const { wheelData } = this;
+
+      const labels = this.steps.map(step => pascalCase(step));
+      const data = this.steps.map(step => wheelData[step]);
+
+      return {
+        datasets: [{
+          data,
+          backgroundColor: color(this.steps.length),
+        }],
+        labels,
+      };
+    },
   },
 
   mounted() {
@@ -117,5 +162,27 @@ export default {
     margin: 2rem 0;
     border: 1px solid #ddd;
     border-bottom: 0;
+  }
+
+  .slide-fade-leave-active,
+  .slide-fade-enter-active {
+    transition-duration: .2s;
+    transition-property: opacity, transform;
+
+    // improves performance issues on mobile
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+
+    will-change: opacity, transform;
+  }
+
+  .slide-fade-enter {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  .slide-fade-leave-to {
+    opacity: 0;
+    transform: translateX(20px);
   }
 </style>

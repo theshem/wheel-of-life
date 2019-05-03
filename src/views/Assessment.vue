@@ -3,7 +3,10 @@
     <h1>The Wheel of Life Assessment</h1>
     <p>The assessment can usually be filled out in less than a minute.</p>
 
-    <Stepper :wheel-data="wheelData" :steps="steps" />
+    <Stepper
+      :wheel-data="wheelData"
+      :steps="steps"
+      @show-result="showResult" />
 
     <hr>
 
@@ -18,8 +21,6 @@
 import Stepper from '@/components/Stepper/index.vue';
 import Chart from '@/components/Chart.vue';
 
-import { pascalCase, color } from '@/utils';
-
 export default {
   name: 'Assessment',
 
@@ -28,41 +29,27 @@ export default {
       type: Object,
       required: true,
     },
-  },
 
-  computed: {
-    steps() {
-      return [
-        'health',
-        'career',
-        'love',
-        'spirituality',
-        'family',
-        'money',
-        'fun',
-        'friends',
-      ];
+    steps: {
+      type: Array,
+      required: true,
     },
 
-    chartData() {
-      const { wheelData } = this;
-
-      const labels = this.steps.map(step => pascalCase(step));
-      const data = this.steps.map(step => wheelData[step]);
-
-      return {
-        datasets: [{
-          data,
-          backgroundColor: color(this.steps.length),
-        }],
-        labels,
-      };
+    chartData: {
+      type: Object,
+      required: true,
     },
   },
 
   components: {
     Chart,
     Stepper,
+  },
+
+  methods: {
+    showResult() {
+      this.$router.push({ name: 'result' });
+    },
   },
 };
 </script>

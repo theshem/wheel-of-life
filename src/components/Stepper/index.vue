@@ -1,6 +1,6 @@
 <template>
   <Step
-    class="wizard"
+    class="step"
     :title="steps[currentStep]"
     :value="currentStepValue"
     @set-value="next">
@@ -52,7 +52,7 @@ export default {
       this.currentStep += 1;
 
       if (this.currentStep > this.steps.length - 1) {
-        this.$router.push({ name: 'result' });
+        this.$emit('show-result');
       }
     },
   },
@@ -60,7 +60,7 @@ export default {
 </script>
 
 <style lang="scss">
-.wizard {
+.step {
   margin-top: 2rem;
 }
 </style>

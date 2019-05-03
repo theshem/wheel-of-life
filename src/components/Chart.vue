@@ -44,6 +44,13 @@ export default {
           fontColor: '#fff',
         },
       },
+      scale: {
+        ticks: {
+          max: 10,
+          min: 0,
+          stepSize: 1,
+        },
+      },
       ...this.options,
     });
   },
