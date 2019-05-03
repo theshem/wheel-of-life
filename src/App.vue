@@ -27,17 +27,25 @@
 </template>
 
 <script>
-import {
-  pascalCase,
-  color,
-  event,
-} from '@/utils';
+import { getChartData } from '@/utils/chart';
+import { event } from '@/utils/event';
 
 export default {
   name: 'App',
 
   data() {
     return {
+      steps: [
+        'health',
+        'career',
+        'love',
+        'spirituality',
+        'family',
+        'money',
+        'fun',
+        'friends',
+      ],
+
       wheelData: {
         health: 0,
         career: 0,
@@ -52,32 +60,9 @@ export default {
   },
 
   computed: {
-    steps() {
-      return [
-        'health',
-        'career',
-        'love',
-        'spirituality',
-        'family',
-        'money',
-        'fun',
-        'friends',
-      ];
-    },
-
     chartData() {
-      const { wheelData } = this;
-
-      const labels = this.steps.map(step => pascalCase(step));
-      const data = this.steps.map(step => wheelData[step]);
-
-      return {
-        datasets: [{
-          data,
-          backgroundColor: color(this.steps.length),
-        }],
-        labels,
-      };
+      const { wheelData, steps } = this;
+      return getChartData(wheelData, steps);
     },
   },
 

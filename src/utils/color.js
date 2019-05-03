@@ -1,11 +1,4 @@
-import Vue from 'vue';
-
-export const event = new Vue();
-
-export function pascalCase(str) {
-  return str[0].toUpperCase() + str.slice(1);
-}
-
+/* eslint-disable import/prefer-default-export */
 export function color(count) {
   const colors = [
     '#F44336',

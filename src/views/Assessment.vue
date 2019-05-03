@@ -48,7 +48,10 @@ export default {
 
   methods: {
     showResult() {
-      this.$router.push({ name: 'result' });
+      this.$router.push({
+        name: 'result',
+        query: this.wheelData,
+      });
     },
   },
 };

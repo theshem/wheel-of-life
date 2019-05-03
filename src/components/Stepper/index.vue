@@ -10,7 +10,7 @@
 
 <script>
 import Step from '@/components/Stepper/Step.vue';
-import { event } from '@/utils';
+import { event } from '@/utils/event';
 
 export default {
   name: 'Stepper',
