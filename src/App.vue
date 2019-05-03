@@ -1,19 +1,19 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Start</router-link>
-      <!--/ <router-link to="/result">Result</router-link>-->
-    </nav>
+    <Header />
 
-    <main>
+    <main class="content">
+      <div v-if="loading" class="loading">Loading...</div>
+
       <transition
+        v-else
         name="slide-fade"
         mode="out-in">
         <router-view
-          class="content"
           :wheel-data="wheelData"
           :steps="steps"
           :chart-data="chartData"
+          :scale="scale"
         />
       </transition>
     </main>
@@ -29,33 +29,20 @@
 <script>
 import { getChartData } from '@/utils/chart';
 import { event } from '@/utils/event';
+import { fetchWheelData } from '@/utils/http';
+import Header from '@/components/Header.vue';
 
 export default {
   name: 'App',
 
+  components: { Header },
+
   data() {
     return {
-      steps: [
-        'health',
-        'career',
-        'love',
-        'spirituality',
-        'family',
-        'money',
-        'fun',
-        'friends',
-      ],
-
-      wheelData: {
-        health: 0,
-        career: 0,
-        love: 0,
-        spirituality: 0,
-        family: 0,
-        money: 0,
-        fun: 0,
-        friends: 0,
-      },
+      steps: [],
+      wheelData: {},
+      scale: {},
+      loading: true,
     };
   },
 
@@ -66,6 +53,19 @@ export default {
     },
   },
 
+  created() {
+    fetchWheelData()
+      .then(({ steps, scale }) => {
+        this.steps = steps;
+        this.scale = scale;
+        this.resetWheelData(steps);
+      })
+      .catch(e => console.error(e))
+      .finally(() => {
+        this.loading = false;
+      });
+  },
+
   mounted() {
     event.$on('set-wheel', (item) => {
       this.wheelData = {
@@ -73,6 +73,19 @@ export default {
         ...item,
       };
     });
+
+    event.$on('reset-wheel', () => {
+      this.resetWheelData(this.steps);
+    });
+  },
+
+  methods: {
+    resetWheelData(steps) {
+      this.wheelData = steps.reduce((acc, step) => ({
+        ...acc,
+        [step]: 0,
+      }), {});
+    },
   },
 };
 </script>
@@ -139,6 +152,14 @@ export default {
     color: #42b983;
   }
 
+  a[target="_blank"]::after {
+    content: " " url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
+    display: inline-block;
+    vertical-align: top;
+    margin: -2px 5px;
+    text-decoration: none;
+  }
+
   button {
     padding: .5em .75em;
   }
@@ -169,5 +190,11 @@ export default {
   .slide-fade-leave-to {
     opacity: 0;
     transform: translateX(20px);
+  }
+
+  .loading {
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 </style>

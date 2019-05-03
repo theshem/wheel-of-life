@@ -6,13 +6,14 @@
     <Stepper
       :wheel-data="wheelData"
       :steps="steps"
+      :scale-max="scale.max"
       @show-result="showResult" />
 
     <hr>
 
     <section class="preview">
       <h2 class="preview__title">Preview</h2>
-      <Chart :chart-data="chartData" />
+      <Chart :chart-data="chartData" :scale="scale" />
     </section>
   </article>
 </template>
@@ -36,6 +37,11 @@ export default {
     },
 
     chartData: {
+      type: Object,
+      required: true,
+    },
+
+    scale: {
       type: Object,
       required: true,
     },

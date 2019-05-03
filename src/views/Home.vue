@@ -12,7 +12,13 @@
 </template>
 
 <script>
+import { event } from '@/utils/event';
+
 export default {
   name: 'Home',
+
+  created() {
+    event.$emit('reset-wheel');
+  },
 };
 </script>

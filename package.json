@@ -10,6 +10,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "atomicjs": "^4.4.0",
     "chart.js": "^2.8.0",
     "chartjs-plugin-labels": "^1.1.0",
     "core-js": "^2.6.5",

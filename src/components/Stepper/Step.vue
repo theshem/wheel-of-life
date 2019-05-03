@@ -4,7 +4,7 @@
     <slot></slot>
 
     <ul class="step__values">
-      <template v-for="n in 10">
+      <template v-for="n in scaleMax">
         <li
           :key="n"
           class="step__value">
@@ -38,6 +38,7 @@ export default {
       required: true,
     },
     value: Number,
+    scaleMax: Number,
   },
 
   methods: {

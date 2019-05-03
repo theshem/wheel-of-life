@@ -3,6 +3,7 @@
     class="step"
     :title="steps[currentStep]"
     :value="currentStepValue"
+    :scale-max="scaleMax"
     @set-value="next">
     <p>How would you rate this area of your life?</p>
   </Step>
@@ -34,6 +35,11 @@ export default {
     wheelData: {
       type: Object,
       required: true,
+    },
+
+    scaleMax: {
+      type: Number,
+      default: 10,
     },
   },
 

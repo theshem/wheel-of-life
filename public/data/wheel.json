@@ -1,0 +1,17 @@
+{
+  "wheel": [
+    "health",
+    "career",
+    "love",
+    "spirituality",
+    "family",
+    "money",
+    "fun",
+    "friends"
+  ],
+  "scale": {
+    "min": 0,
+    "max": 10,
+    "stepSize": 1
+  }
+}

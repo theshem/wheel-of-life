@@ -1564,6 +1564,11 @@ atob@^2.1.1:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
+atomicjs@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/atomicjs/-/atomicjs-4.4.0.tgz#c247f63f31aa1a82cf8e820cb7abd40a6d7afce4"
+  integrity sha512-DOG9afIlEY2Um7ZW8CRIze5ymonS90siR9McZlZB2N2e4mM4/LpG1xUuRSDUSNhazyVSYT7C4ARGRH2yK8hGyg==
+
 autoprefixer@^9.5.1:
   version "9.5.1"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-9.5.1.tgz#243b1267b67e7e947f28919d786b50d3bb0fb357"
