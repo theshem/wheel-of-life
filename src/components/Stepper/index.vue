@@ -26,28 +26,18 @@ export default {
   },
 
   props: {
+    steps: {
+      type: Array,
+      required: true,
+    },
+
     wheelData: {
       type: Object,
-      default() {
-        return {};
-      },
+      required: true,
     },
   },
 
   computed: {
-    steps() {
-      return [
-        'health',
-        'career',
-        'love',
-        'spirituality',
-        'family',
-        'money',
-        'fun',
-        'friends',
-      ];
-    },
-
     currentStepValue() {
       return this.wheelData[this.steps[this.currentStep]];
     },

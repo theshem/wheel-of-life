@@ -74,7 +74,7 @@ export default {
     }
 
     &__rate-btn {
-      font-size: 1.5rem;
+      font-size: 2rem;
       cursor: pointer;
 
       &--active {

@@ -112,4 +112,10 @@ export default {
   button {
     padding: .5em .75em;
   }
+
+  hr {
+    margin: 2rem 0;
+    border: 1px solid #ddd;
+    border-bottom: 0;
+  }
 </style>
