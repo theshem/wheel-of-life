@@ -1,8 +1,25 @@
 {
   "name": "wheel-of-life",
-  "version": "0.1.0",
+  "description": "A flexible client-side interactive app for the wheel of life assessment",
+  "version": "1.0.0",
   "private": true,
+  "author": {
+    "name": "Hashem Qolami",
+    "email": "hashem@qolami.com",
+    "url": "https://github.com/theshem"
+  },
+  "bugs": "https://github.com/theshem/wheel-of-life/issues",
+  "homepage": "https://wheel-of-life.surge.sh",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theshem/wheel-of-life.git"
+  },
   "license": "MIT",
+  "keywords": [
+    "wheel",
+    "life",
+    "wheel of life"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
